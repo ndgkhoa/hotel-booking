@@ -19,7 +19,7 @@ app.use(
     }),
 )
 
-app.use(express.static(path.join(__dirname, '../../fontend/dist')))
+app.use(express.static(path.join(__dirname, '../../frontend/dist')))
 
 app.use('/api/auth', authRoutes)
 
