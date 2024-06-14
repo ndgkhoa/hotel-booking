@@ -1,10 +1,10 @@
 import express from 'express'
 import cors from 'cors'
 import 'dotenv/config'
+import { Request, Response } from 'express'
 import connectDB from './config/db'
 import authRoutes from './routes/auth'
 import hotelsRoutes from './routes/hotels'
-import deploymentRoutes from './routes/deployment'
 import cookieParser from 'cookie-parser'
 import path from 'path'
 import cloudinaryConfig from './config/cloudinaryConfig'
@@ -27,7 +27,9 @@ app.use(express.static(path.join(__dirname, '../../frontend/dist')))
 
 app.use('/api/auth', authRoutes)
 app.use('/api/hotels', hotelsRoutes)
-app.use(deploymentRoutes)
+app.get('*', (req: Request, res: Response) => {
+    res.sendFile(path.join(__dirname, '../../frontend/dist/index.html'))
+})
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`)
