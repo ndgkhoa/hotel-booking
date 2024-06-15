@@ -14,4 +14,6 @@ router.post(
     HotelsController.createHotel,
 )
 
+router.get('/', verifyToken, HotelsController.getAllHotels)
+
 export default router

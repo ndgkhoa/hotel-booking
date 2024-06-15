@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import cloudinary from 'cloudinary'
-import Hotel, { HotelType } from '../models/hotel'
+import { HotelType } from '../shared/types'
+import Hotel from '../models/hotel'
 
 const HotelsController = {
     createHotel: async (req: Request, res: Response) => {
@@ -26,6 +27,15 @@ const HotelsController = {
         } catch (error) {
             console.log('error creating hotel: ', error)
             res.status(500).json({ message: 'Something went wrong' })
+        }
+    },
+
+    getAllHotels: async (req: Request, res: Response) => {
+        try {
+            const hotels = await Hotel.find({ userId: req.userId })
+            res.json(hotels)
+        } catch (error) {
+            res.send(500).json({ message: 'Error fetching hotel' })
         }
     },
 }
