@@ -33,10 +33,44 @@ export type HotelSearchResponse = {
     }
 }
 
+export type SearchParams = {
+    destination?: string
+    checkIn?: string
+    checkOut?: string
+    adultCount?: string
+    childCount?: string
+    page?: string
+    facilities?: string[]
+    types?: string[]
+    stars?: string[]
+    maxPrice?: string
+    sortOption?: string
+}
+
+export type GuestInfoFormData = {
+    checkIn: Date
+    checkOut: Date
+    adultCount: number
+    childCount: number
+}
+
 export type PaymentIntentResponse = {
     paymentIntentId: string
     clientSecret: string
     totalCost: number
+}
+
+export type BookingFormData = {
+    firstName: string
+    lastName: string
+    email: string
+    adultCount: number
+    childCount: number
+    checkIn: string
+    checkOut: string
+    hotelId: string
+    totalCost: number
+    paymentIntentId: string
 }
 
 export type BookingType = {
