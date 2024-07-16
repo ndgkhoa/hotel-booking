@@ -13,12 +13,12 @@ const Home = () => {
             <div className="grid gap-4">
                 <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
                     {topRowHotels.map((hotel) => (
-                        <LastDestinationCard hotel={hotel} />
+                        <LastDestinationCard key={hotel._id} hotel={hotel} />
                     ))}
                 </div>
                 <div className="grid md:grid-cols-3 gap-4">
                     {bottomRowHotels.map((hotel) => (
-                        <LastDestinationCard hotel={hotel} />
+                        <LastDestinationCard key={hotel._id} hotel={hotel} />
                     ))}
                 </div>
             </div>

@@ -7,10 +7,9 @@ import verifyToken from '../middlewares/auth'
 const router = require('express').Router()
 const AuthController = require('../controllers/AuthController')
 
-router.post('/register', registerValidation, AuthController.registerUser)
-router.post('/login', loginValidation, AuthController.loginUser)
-router.get('/', AuthController.getAllUser)
-router.get('/validate-token', verifyToken, AuthController.verifyToken)
+router.post('/register', registerValidation, AuthController.register)
+router.post('/login', loginValidation, AuthController.login)
+router.get('/check-token', verifyToken, AuthController.verifyToken)
 router.post('/logout', AuthController.logout)
 
 export default router

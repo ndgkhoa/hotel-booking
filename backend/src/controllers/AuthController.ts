@@ -6,7 +6,7 @@ import { validationResult } from 'express-validator'
 import _ from 'lodash'
 
 const AuthController = {
-    registerUser: async (req: Request, res: Response) => {
+    register: async (req: Request, res: Response) => {
         const errors = validationResult(req)
         if (!errors.isEmpty()) {
             return res.status(400).json({ message: errors.array() })
@@ -28,11 +28,7 @@ const AuthController = {
                 lastName: req.body.lastName,
             })
 
-            await user.save()
-
-            const token = generateToken(user.id)
-
-            setAuthTokenCookie(res, token)
+            await user.save();
 
             return res
                 .status(200)
@@ -47,7 +43,7 @@ const AuthController = {
         res.status(200).send({ userId: req.userId })
     },
 
-    loginUser: async (req: Request, res: Response) => {
+    login: async (req: Request, res: Response) => {
         const errors = validationResult(req)
         if (!errors.isEmpty()) {
             return res.status(400).json({ message: errors.array() })
@@ -64,35 +60,22 @@ const AuthController = {
             }
             const token = generateToken(user.id)
             setAuthTokenCookie(res, token)
-            res.status(200).send({ userId: user.id })
+            res.status(200).send({ email,token })
         } catch (error) {
             console.log(error)
             res.status(500).send({ message: 'Something went wrong' })
         }
     },
 
-    getAllUser: async (req: Request, res: Response) => {
-        try {
-            const users = await User.find().lean()
-            const userData = users.map((user) =>
-                _.omit(user, ['password', '__v']),
-            )
-
-            res.status(200).send({
-                message: 'Get all users successfully',
-                users: userData,
-            })
-        } catch (error) {
-            console.log(error)
-            res.status(500).send({ message: 'Failed to get all user' })
-        }
-    },
 
     logout: async (req: Request, res: Response) => {
-        res.cookie('auth_token', '', {
+        res.cookie('auth-token', '', {
             expires: new Date(0),
-        })
-        res.send()
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict',
+        });
+        res.status(200).send({ message: 'Logged out successfully' });
     },
 }
 module.exports = AuthController

@@ -16,7 +16,7 @@ export const hotelTypes = [
     'Self Catering',
 ]
 
-export const hotelFacilities = [
+export const roomFacilities = [
     'Free Wifi',
     'Parking',
     'Airport Shuttle',

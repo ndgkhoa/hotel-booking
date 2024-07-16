@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext } from 'react'
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -25,11 +25,22 @@ export const useAppContext = () => {
 }
 
 export const AppContextProvider = ({ children }: { children: ReactNode }) => {
-    const { isError } = useQuery('validateToken', apiClient.validateToken, {
+    const { isSuccess, isError } = useQuery('checkToken', apiClient.checkToken, {
         retry: false,
-    })
+    });
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        if (isSuccess) {
+            setIsLoggedIn(true);
+        }
+        if (isError) {
+            setIsLoggedIn(false);
+        }
+    }, [isSuccess, isError]);
+    
     return (
-        <AppContext.Provider value={{ isLoggedIn: !isError, stripePromise }}>
+        <AppContext.Provider value={{ isLoggedIn, stripePromise}}>
             {children}
             <ToastContainer />
         </AppContext.Provider>

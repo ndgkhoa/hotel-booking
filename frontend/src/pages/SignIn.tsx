@@ -22,7 +22,7 @@ const SignIn = () => {
     const mutation = useMutation(apiClient.signIn, {
         onSuccess: async () => {
             toast.success('Sign in successful!')
-            await queryClient.invalidateQueries('validateToken')
+            await queryClient.invalidateQueries('checkToken')
             navigate(location.state?.from?.pathname || '/')
         },
         onError: (error: Error) => {
