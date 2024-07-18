@@ -12,7 +12,7 @@ const Layout = ({ children }: Props) => {
         <div className="flex flex-col min-h-screen">
             <div
                 className="relative bg-banner-image"
-                style={{ minHeight: '750px' }}
+                style={{ minHeight: '650px' }}
             >
                 <Header />
                 <Hero />
@@ -20,7 +20,10 @@ const Layout = ({ children }: Props) => {
                     <SearchBar />
                 </div>
             </div>
-            <div className="container mx-auto py-10 flex-1">{children}</div>
+            <div className="px-4 sm:px-6 md:px-12 lg:px-18 xl:px-36 2xl:px-40 py-5 flex-1">
+                {children}
+            </div>
+
             <Footer />
         </div>
     )

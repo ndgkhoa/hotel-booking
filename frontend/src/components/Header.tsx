@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import { useAppContext } from '../contexts/AppContext'
-import { FaUserCircle } from 'react-icons/fa'
 import { MdCardTravel } from 'react-icons/md'
 import { useEffect, useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
@@ -42,17 +41,22 @@ const Header = () => {
         boxShadow: 'none',
         overlayOpacity: 0.4,
         textColor: 'text-white',
+        signInButtonColor: 'bg-white text-[#0094FE]',
     })
 
     useEffect(() => {
         const handleScroll = () => {
             const scrolled = window.scrollY > 0
-            setHeaderStyle({
+            setHeaderStyle((prevState) => ({
+                ...prevState,
                 backgroundColor: scrolled ? 'white' : 'transparent',
                 boxShadow: scrolled ? '0 2px 4px rgba(0, 0, 0, 0.1)' : 'none',
                 overlayOpacity: scrolled ? 0.08 : 0.4,
                 textColor: scrolled ? 'text-black' : 'text-white',
-            })
+                signInButtonColor: scrolled
+                    ? 'bg-[#0094FE] text-white'
+                    : 'bg-white text-[#0094FE]',
+            }))
         }
 
         window.addEventListener('scroll', handleScroll)
@@ -79,7 +83,7 @@ const Header = () => {
                 }}
             />
             <div className="py-4">
-                <div className="mx-36 flex justify-between items-center">
+                <div className="md:mx-36 flex justify-between items-center">
                     <span
                         className={`text-3xl font-bold tracking-tight ${headerStyle.textColor}`}
                     >
@@ -155,42 +159,13 @@ const Header = () => {
                             </div>
                         ) : (
                             <div className="relative">
-                                <button
-                                    onClick={toggleDropdown}
-                                    className="flex items-center space-x-3 cursor-pointer border border-gray-300 py-2 px-4 bg-white text-gray-900 rounded-full hover:shadow-md"
-                                >
-                                    <BsList className="w-4 h-4" />
-                                    <FaUserCircle className="w-8 h-8 opacity-80" />
-                                </button>
-
-                                {isOpen && (
-                                    <div className="absolute right-0 mt-2 w-60 px-4 py-3 bg-white rounded-lg shadow border dark:border-transparent dark:bg-gray-800">
-                                        <ul className="space-y-3 dark:text-white">
-                                            <li className="font-medium">
-                                                <Link
-                                                    to="/sign-in"
-                                                    className="flex items-center transition-colors duration-200 border-r-4 border-transparent hover:border-indigo-700 py-2 px-3 rounded-md"
-                                                >
-                                                    <svg
-                                                        className="w-5 h-5 text-green-600 mr-2"
-                                                        fill="none"
-                                                        stroke="currentColor"
-                                                        viewBox="0 0 24 24"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                    >
-                                                        <path
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round"
-                                                            strokeWidth="2"
-                                                            d="M14 5l7 7m0 0l-7 7m7-7H3"
-                                                        ></path>
-                                                    </svg>
-                                                    Sign in
-                                                </Link>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                )}
+                                <Link to="/sign-in">
+                                    <button
+                                        className={`text-md font-semibold py-2 px-4 rounded-3xl transition-colors duration-300 ${headerStyle.signInButtonColor}`}
+                                    >
+                                        SIGN IN
+                                    </button>
+                                </Link>
                             </div>
                         )}
                     </div>

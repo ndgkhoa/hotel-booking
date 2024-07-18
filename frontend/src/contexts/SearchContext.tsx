@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react'
+import { format } from 'date-fns'
 
 type SearchContext = {
     destination: string
@@ -22,20 +23,34 @@ type SearchContextProviderProps = {
     children: React.ReactNode
 }
 
-export const SearchContextProvider = ({ children }: SearchContextProviderProps) => {
-    const [destination, setDestination] = useState<string>(() => sessionStorage.getItem('destination') || '')
-    const [checkIn, setCheckIn] = useState<Date>(
-        () => new Date(sessionStorage.getItem('checkIn') || new Date().toISOString()),
+export const SearchContextProvider = ({
+    children,
+}: SearchContextProviderProps) => {
+    const formatDate = (date: Date) => format(date, 'dd/MM/yyyy')
+
+    const [destination, setDestination] = useState<string>(
+        () => sessionStorage.getItem('destination') || '',
     )
+    const [checkIn, setCheckIn] = useState<Date>(() => {
+        const storedCheckIn = sessionStorage.getItem('checkIn')
+        return storedCheckIn ? new Date(storedCheckIn) : new Date()
+    })
     const [checkOut, setCheckOut] = useState<Date>(() => {
-        const currentDate = new Date();
-        const nextDay = new Date(currentDate);
-        nextDay.setDate(currentDate.getDate() + 1);
-        return new Date(sessionStorage.getItem('checkOut') || nextDay.toISOString());
-    });
-    const [adultCount, setAdultCount] = useState<number>(() => parseInt(sessionStorage.getItem('adultCount') || '1'))
-    const [childCount, setChildCount] = useState<number>(() => parseInt(sessionStorage.getItem('childCount') || '0'))
-    const [hotelId, setHotelId] = useState<string>(() => sessionStorage.getItem('hotelId') || '')
+        const storedCheckOut = sessionStorage.getItem('checkOut')
+        const nextDay = new Date()
+        nextDay.setDate(nextDay.getDate() + 1)
+        return storedCheckOut ? new Date(storedCheckOut) : nextDay
+    })
+    const [adultCount, setAdultCount] = useState<number>(() =>
+        parseInt(sessionStorage.getItem('adultCount') || '1'),
+    )
+    const [childCount, setChildCount] = useState<number>(() =>
+        parseInt(sessionStorage.getItem('childCount') || '0'),
+    )
+    const [hotelId, setHotelId] = useState<string>(
+        () => sessionStorage.getItem('hotelId') || '',
+    )
+
     const saveSearchValues = (
         destination: string,
         checkIn: Date,
@@ -54,14 +69,15 @@ export const SearchContextProvider = ({ children }: SearchContextProviderProps) 
         }
 
         sessionStorage.setItem('destination', destination)
-        sessionStorage.setItem('checkIn', checkIn.toISOString())
-        sessionStorage.setItem('checkOut', checkOut.toISOString())
+        sessionStorage.setItem('checkIn', formatDate(checkIn))
+        sessionStorage.setItem('checkOut', formatDate(checkOut))
         sessionStorage.setItem('adultCount', adultCount.toString())
         sessionStorage.setItem('childCount', childCount.toString())
         if (hotelId) {
             sessionStorage.setItem('hotelId', hotelId)
         }
     }
+
     return (
         <SearchContext.Provider
             value={{
@@ -81,5 +97,10 @@ export const SearchContextProvider = ({ children }: SearchContextProviderProps) 
 
 export const useSearchContext = () => {
     const context = useContext(SearchContext)
-    return context as SearchContext
+    if (!context) {
+        throw new Error(
+            'useSearchContext must be used within a SearchContextProvider',
+        )
+    }
+    return context
 }
