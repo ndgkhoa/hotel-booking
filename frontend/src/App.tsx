@@ -49,6 +49,14 @@ const App = () => {
                         </Layout>
                     }
                 />
+                <Route
+                    path="/add-hotel"
+                    element={
+                        <Layout>
+                            <AddHotel />
+                        </Layout>
+                    }
+                />
                 <Route path="/sign-in" element={<SignIn />} />
                 {isLoggedIn && (
                     <>
@@ -60,14 +68,7 @@ const App = () => {
                                 </Layout>
                             }
                         />
-                        <Route
-                            path="/add-hotel"
-                            element={
-                                <Layout>
-                                    <AddHotel />
-                                </Layout>
-                            }
-                        />
+
                         <Route
                             path="/my-bookings"
                             element={
