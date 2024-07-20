@@ -6,6 +6,7 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from '@/components/ui/carousel'
+import { Link } from 'react-router-dom'
 
 export const cities = [
     {
@@ -61,18 +62,20 @@ const Cities = () => {
                         className="basis-1/4 flex-shrink-0"
                     >
                         <div className="p-2 h-full">
-                            <Card className="h-full border-0">
-                                <CardContent className="flex items-center justify-center relative h-full p-0 aspect-square">
-                                    <img
-                                        src={city.img}
-                                        alt={city.name}
-                                        className="object-cover w-full h-full rounded-2xl"
-                                    />
-                                    <span className="absolute bottom-4 left-4 text-white text-2xl font-bold">
-                                        {city.name}
-                                    </span>
-                                </CardContent>
-                            </Card>
+                            <Link to={`/search?destination=${city.name}`}>
+                                <Card className="h-full border-0 cursor-pointer rounded-2xl">
+                                    <CardContent className="flex items-center justify-center relative h-full p-0 aspect-square">
+                                        <img
+                                            src={city.img}
+                                            alt={city.name}
+                                            className="object-cover w-full h-full rounded-2xl"
+                                        />
+                                        <span className="absolute bottom-4 left-4 text-white text-2xl font-bold">
+                                            {city.name}
+                                        </span>
+                                    </CardContent>
+                                </Card>
+                            </Link>
                         </div>
                     </CarouselItem>
                 ))}

@@ -49,9 +49,9 @@ const Header = () => {
             const scrolled = window.scrollY > 0
             setHeaderStyle((prevState) => ({
                 ...prevState,
-                backgroundColor: scrolled ? 'white' : 'transparent',
+                backgroundColor: scrolled ? '#FFFFFF' : 'transparent',
                 boxShadow: scrolled ? '0 2px 4px rgba(0, 0, 0, 0.1)' : 'none',
-                overlayOpacity: scrolled ? 0.08 : 0.4,
+                overlayOpacity: scrolled ? 0 : 0.4,
                 textColor: scrolled ? 'text-black' : 'text-white',
                 signInButtonColor: scrolled
                     ? 'bg-[#0094FE] text-white'
@@ -133,7 +133,7 @@ const Header = () => {
                                                 className="font-medium"
                                             >
                                                 <a
-                                                    href="log-out"
+                                                    href="#"
                                                     className="flex items-center transition-colors duration-200 border-r-4 border-transparent hover:border-red-600 py-2 px-3 rounded-md"
                                                 >
                                                     <svg

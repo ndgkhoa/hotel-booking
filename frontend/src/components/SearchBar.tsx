@@ -1,20 +1,33 @@
-import { FormEvent, useState } from 'react'
+import { FormEvent, useState, useEffect } from 'react'
 import { useSearchContext } from '../contexts/SearchContext'
 import { MdTravelExplore } from 'react-icons/md'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 const SearchBar = () => {
     const search = useSearchContext()
     const navigate = useNavigate()
-    const [destination, setDestination] = useState<string>(search.destination)
+    const location = useLocation()
+    const params = new URLSearchParams(location.search)
+    const initialDestination = params.get('destination') || search.destination
+    const [destination, setDestination] = useState<string>(initialDestination)
     const [checkIn, setCheckIn] = useState<Date>(search.checkIn)
     const [checkOut, setCheckOut] = useState<Date>(search.checkOut)
     const [adultCount, setAdultCount] = useState<number>(search.adultCount)
     const [childCount, setChildCount] = useState<number>(search.childCount)
 
-    const handleSubmit = (e: FormEvent) => {
+    useEffect(() => {
+        setDestination(initialDestination)
+    }, [initialDestination])
+
+    useEffect(() => {
+        if (params.get('destination')) {
+            handleSubmit(new Event('submit'))
+        }
+    }, [destination])
+
+    const handleSubmit = (e: Event | FormEvent) => {
         e.preventDefault()
         search.saveSearchValues(
             destination,

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .bg-banner-image {
-    background-image: url('public/assets/banner.jpeg');
+    background-image: url('https://tripseg.io/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbg-home-hotel.c74ed0d5.jpeg&w=1920&q=75');
     background-size: cover;
     background-position: center;
 }
@@ -12,8 +12,8 @@
     background-image: url('/assets/footer.jpg');
     background-size: cover;
     background-position: center;
-    position: relative; /* Để lớp phủ có thể được đặt chính xác */
-    overflow: hidden; /* Đảm bảo lớp phủ không tràn ra ngoài */
+    position: relative;
+    overflow: hidden;
 }
 
 .footer-overlay {
@@ -22,13 +22,12 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7); /* Lớp phủ màu đen với độ mờ 70% */
-    z-index: 1; /* Đảm bảo lớp phủ nằm dưới nội dung */
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
 }
 
-/* Đảm bảo các phần tử có màu trắng */
 .text-white {
-    color: white !important; /* Thêm !important nếu cần thiết */
+    color: white !important;
 }
 
 @layer base {
