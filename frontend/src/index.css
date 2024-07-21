@@ -9,7 +9,7 @@
 }
 
 .bg-footer-image {
-    background-image: url('/assets/footer.jpg');
+    background-image: url('https://4kwallpapers.com/images/wallpapers/sunset-dusk-lake-reflection-landscape-windows-11-3840x2160-8615.jpeg');
     background-size: cover;
     background-position: center;
     position: relative;
@@ -28,6 +28,13 @@
 
 .text-white {
     color: white !important;
+}
+
+.explore-text {
+    font-size: 1.1rem;
+    background: linear-gradient(to right, #00bfff, #32cd32);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 @layer base {

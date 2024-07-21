@@ -1,5 +1,5 @@
 import { useFormContext } from 'react-hook-form'
-import { hotelTypes } from '../../config/hotelOptionConfig'
+import { hotelTypes } from '../../config/FakeData'
 import { HotelFormData } from './ManageHotelForm'
 
 const TypeSection = () => {

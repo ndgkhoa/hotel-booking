@@ -3,11 +3,22 @@ import Cities from '@/components/Cities'
 
 const Home = () => {
     return (
-        <div className="space-y-2">
-            <h2 className="text-2xl font-bold">Popular Destination</h2>
+        <div className="">
+            <p className="explore-text">EXPLORE</p>
+            <p className="text-4xl font-semibold relative">
+                Popular Destination
+                <span className="text-blue-500 text-5xl absolute bottom-1">
+                    .
+                </span>
+            </p>
             <Cities />
-            <h2 className="text-2xl font-bold">Popular Hotels</h2>
-            <p className="">Most recent hotels added by our hosts</p>
+            <p className="explore-text pt-6">EXPLORE</p>
+            <p className="text-4xl font-semibold relative">
+                Popular Hotels
+                <span className="text-blue-500 text-5xl absolute bottom-1">
+                    .
+                </span>
+            </p>
             <AllHotels />
         </div>
     )

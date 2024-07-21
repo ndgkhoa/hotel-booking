@@ -131,7 +131,7 @@ const SearchBar = () => {
                                 minDate={minDate}
                                 maxDate={maxDate}
                                 placeholderText="Check-in Date"
-                                className="w-full cursor-pointer bg-transparent p-3 rounded-lg shadow-sm h-12 focus:outline-none"
+                                className="w-full cursor-pointer bg-transparent p-3 h-12 focus:outline-none"
                             />
                             <DatePicker
                                 selected={checkOut}
@@ -142,7 +142,7 @@ const SearchBar = () => {
                                 minDate={checkIn || minDate}
                                 maxDate={maxDate}
                                 placeholderText="Check-out Date"
-                                className="w-full cursor-pointer bg-transparent p-4 rounded-lg shadow-sm h-12 focus:outline-none"
+                                className="w-full cursor-pointer bg-transparent p-3 h-12 focus:outline-none"
                             />
                         </div>
                     </div>

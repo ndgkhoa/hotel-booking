@@ -1,4 +1,4 @@
-import { hotelTypes } from '../config/hotelOptionConfig'
+import { hotelTypes } from '../config/FakeData'
 
 type Props = {
     selectedHotelTypes: string[]
