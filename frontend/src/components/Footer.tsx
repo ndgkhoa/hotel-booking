@@ -7,6 +7,7 @@ import {
 import { AiOutlineGithub } from 'react-icons/ai'
 import { IoMdMail } from 'react-icons/io'
 import { BsFillTelephoneFill } from 'react-icons/bs'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
     return (
@@ -15,9 +16,18 @@ const Footer = () => {
             <div className="flex flex-col md:flex-row px-5 py-6 md:px-0 md:py-6 md:mx-36 relative z-10">
                 {/* Logo and Social Links */}
                 <div className="flex-shrink-0 w-full md:w-1/4 text-center md:text-left mb-10 md:mb-0 text-white">
-                    <a className="flex items-center justify-center font-medium title-font md:justify-start">
-                        <span className="text-2xl font-bold">Logo</span>
-                    </a>
+                    <Link
+                        to="/"
+                        className={`flex items-center text-2xl font-bold`}
+                    >
+                        <img
+                            src="/public/logo1.png"
+                            alt="Logo"
+                            width={90}
+                            height={90}
+                        />
+                        Booking
+                    </Link>
                     <p className="mt-2 text-sm text-white">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Mauris blandit laoreet metus, condimentum vehicula enim

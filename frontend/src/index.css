@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .bg-banner-image {
-    background-image: url('https://static.wixstatic.com/media/nsplsh_4d3747646450714a6f7767~mv2_d_5760_3840_s_4_2.jpg/v1/crop/x_0,y_575,w_5760,h_2691/fill/w_2404,h_1123,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/Image%20by%20Fernando%20%C3%81lvarez%20Rodr%C3%ADguez.jpg');
+    background-image: url('https://images.pexels.com/photos/1018478/pexels-photo-1018478.jpeg');
     background-size: cover;
     background-position: center;
 }

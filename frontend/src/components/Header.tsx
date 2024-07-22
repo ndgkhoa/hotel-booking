@@ -85,15 +85,22 @@ const Header = () => {
             <div className="py-4">
                 <div className="md:mx-36 flex justify-between items-center">
                     <span
-                        className={`text-3xl font-bold tracking-tight ${headerStyle.textColor}`}
+                        className={`text-2xl font-bold tracking-tight ${headerStyle.textColor}`}
                     >
                         <Link
                             to="/"
-                            className={`block ${headerStyle.textColor}`}
+                            className={`flex items-center ${headerStyle.textColor}`}
                         >
-                            Logo
+                            <img
+                                src="/public/logo1.png"
+                                alt="Logo"
+                                width={90}
+                                height={90}
+                            />
+                            Booking
                         </Link>
                     </span>
+
                     <div className="flex items-center space-x-2">
                         {isLoggedIn ? (
                             <div className="relative">
