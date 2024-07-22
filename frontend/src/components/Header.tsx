@@ -92,7 +92,7 @@ const Header = () => {
                             className={`flex items-center ${headerStyle.textColor}`}
                         >
                             <img
-                                src="/public/logo1.png"
+                                src="https://res.cloudinary.com/dh1ix1eby/image/upload/v1721678034/jhp7oermymm01sd11gro.png"
                                 alt="Logo"
                                 width={90}
                                 height={90}
