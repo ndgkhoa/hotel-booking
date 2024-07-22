@@ -52,7 +52,7 @@ const Register: React.FC = () => {
     })
 
     return (
-        <div className="flex h-[800px] overflow-auto">
+        <div className="flex h-full overflow-auto">
             {/* Container for Form and Image */}
             <div className="flex h-full w-full overflow-auto">
                 {/* Left: Registration Form */}
@@ -320,7 +320,7 @@ const Register: React.FC = () => {
                     <img
                         src="https://c0.wallpaperflare.com/preview/299/454/390/vietnam-h%E1%BB%99i-an-old-street-hoi-an.jpg"
                         alt="Placeholder Image"
-                        className="object-cover w-full h-full"
+                        className="object-cover w-full h-[1024px]"
                     />
                 </div>
             </div>

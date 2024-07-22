@@ -136,7 +136,7 @@ const Footer = () => {
                         <h2 className="mb-3 text-sm font-medium tracking-widest text-gray-100 uppercase title-font">
                             Contact
                         </h2>
-                        <nav className="mb-10 list-none text-right">
+                        <nav className="mb-10 list-none">
                             <li className="mt-3">
                                 <a
                                     className="text-gray-100 cursor-pointer hover:text-gray-300"
