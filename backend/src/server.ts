@@ -7,7 +7,7 @@ import usersRoutes from './routes/users'
 import hotelsRoutes from './routes/hotels'
 import bookingsRoutes from './routes/bookings'
 import cookieParser from 'cookie-parser'
-import cloudinaryConfig from './config/cloudinaryConfig'
+import cloudinaryConfig from './config/cloudinary'
 import path from 'path'
 
 connectDB()

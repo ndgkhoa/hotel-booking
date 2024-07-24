@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { format } from 'date-fns'
+//import { format } from 'date-fns'
 
 type SearchContext = {
     destination: string
@@ -26,29 +26,43 @@ type SearchContextProviderProps = {
 export const SearchContextProvider = ({
     children,
 }: SearchContextProviderProps) => {
-    const formatDate = (date: Date) => format(date, 'dd/MM/yyyy')
+    //const formatDate = (date: Date) => format(date, 'dd/MM/yyyy')
+
+    const getStoredDate = (key: string, defaultDate: Date) => {
+        const storedDate = sessionStorage.getItem(key)
+        if (storedDate) {
+            const parsedDate = new Date(storedDate)
+            // Kiểm tra nếu giá trị lưu trữ có phải là ngày hợp lệ
+            return isNaN(parsedDate.getTime()) ? defaultDate : parsedDate
+        }
+        return defaultDate
+    }
 
     const [destination, setDestination] = useState<string>(
-        () => sessionStorage.getItem('destination') || '',
+        sessionStorage.getItem('destination') || '',
     )
-    const [checkIn, setCheckIn] = useState<Date>(() => {
-        const storedCheckIn = sessionStorage.getItem('checkIn')
-        return storedCheckIn ? new Date(storedCheckIn) : new Date()
-    })
-    const [checkOut, setCheckOut] = useState<Date>(() => {
-        const storedCheckOut = sessionStorage.getItem('checkOut')
-        const nextDay = new Date()
-        nextDay.setDate(nextDay.getDate() + 1)
-        return storedCheckOut ? new Date(storedCheckOut) : nextDay
-    })
+
+    const [checkIn, setCheckIn] = useState<Date>(() =>
+        getStoredDate('checkIn', new Date()),
+    )
+
+    const [checkOut, setCheckOut] = useState<Date>(() =>
+        getStoredDate(
+            'checkOut',
+            new Date(new Date().setDate(new Date().getDate() + 1)),
+        ),
+    )
+
     const [adultCount, setAdultCount] = useState<number>(() =>
         parseInt(sessionStorage.getItem('adultCount') || '1'),
     )
+
     const [childCount, setChildCount] = useState<number>(() =>
         parseInt(sessionStorage.getItem('childCount') || '0'),
     )
+
     const [hotelId, setHotelId] = useState<string>(
-        () => sessionStorage.getItem('hotelId') || '',
+        sessionStorage.getItem('hotelId') || '',
     )
 
     const saveSearchValues = (
@@ -68,9 +82,10 @@ export const SearchContextProvider = ({
             setHotelId(hotelId)
         }
 
+        // Lưu trữ giá trị vào sessionStorage
         sessionStorage.setItem('destination', destination)
-        sessionStorage.setItem('checkIn', formatDate(checkIn))
-        sessionStorage.setItem('checkOut', formatDate(checkOut))
+        sessionStorage.setItem('checkIn', checkIn.toISOString()) // Lưu dưới dạng ISO string
+        sessionStorage.setItem('checkOut', checkOut.toISOString()) // Lưu dưới dạng ISO string
         sessionStorage.setItem('adultCount', adultCount.toString())
         sessionStorage.setItem('childCount', childCount.toString())
         if (hotelId) {

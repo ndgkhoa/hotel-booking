@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express'
-import upload from '../config/multerConfig'
+import upload from '../config/multer'
 import HotelsController from '../controllers/HotelsController'
 import verifyToken from '../middlewares/auth'
 import hotelValidation from '../middlewares/hotelValidation'

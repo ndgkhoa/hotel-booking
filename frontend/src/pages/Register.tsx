@@ -52,11 +52,11 @@ const Register: React.FC = () => {
     })
 
     return (
-        <div className="flex h-full overflow-auto">
+        <div className="flex h-screen lg:h-auto overflow-auto">
             {/* Container for Form and Image */}
-            <div className="flex h-full w-full overflow-auto">
+            <div className="flex w-full">
                 {/* Left: Registration Form */}
-                <div className="w-full lg:w-1/2 bg-white p-8 lg:p-36 md:p-20 sm:p-10 flex flex-col justify-center">
+                <div className="w-full lg:w-1/2 bg-white p-8 lg:p-36 md:p-20 sm:p-10 flex flex-col justify-center relative">
                     <button
                         onClick={() => navigate(-1)}
                         className="absolute top-6 left-6 p-2 text-blue-500 hover:text-blue-700"
@@ -236,7 +236,10 @@ const Register: React.FC = () => {
                                         className="text-gray-500"
                                     />
                                 ) : (
-                                    <FaEye size={20} />
+                                    <FaEye
+                                        size={20}
+                                        className="text-gray-500"
+                                    />
                                 )}
                             </button>
                         </div>
@@ -251,7 +254,7 @@ const Register: React.FC = () => {
                                         : 'border-gray-300 focus:border-blue-500'
                                 }`}
                                 {...register('confirmPassword', {
-                                    required: 'Confirm Password is required',
+                                    required: 'Please confirm your password',
                                     validate: (value) =>
                                         value === passwordValue ||
                                         'Passwords do not match',
@@ -291,7 +294,10 @@ const Register: React.FC = () => {
                                         className="text-gray-500"
                                     />
                                 ) : (
-                                    <FaEye size={20} />
+                                    <FaEye
+                                        size={20}
+                                        className="text-gray-500"
+                                    />
                                 )}
                             </button>
                         </div>
@@ -299,9 +305,8 @@ const Register: React.FC = () => {
                         <button
                             type="submit"
                             className="bg-blue-500 text-white py-3 font-bold hover:bg-blue-600 text-lg rounded-md"
-                            disabled={mutation.isLoading}
                         >
-                            {mutation.isLoading ? 'Registering...' : 'Register'}
+                            Register
                         </button>
                     </form>
                     <div className="mt-6 text-center text-lg">
@@ -314,13 +319,12 @@ const Register: React.FC = () => {
                         </Link>
                     </div>
                 </div>
-
-                {/* Right: Image */}
-                <div className="w-1/2 h-full hidden lg:block box-border">
+                {/* Right: Image Placeholder */}
+                <div className="hidden lg:block lg:w-1/2 bg-gray-100">
                     <img
                         src="https://c0.wallpaperflare.com/preview/299/454/390/vietnam-h%E1%BB%99i-an-old-street-hoi-an.jpg"
-                        alt="Placeholder Image"
-                        className="object-cover w-full h-[1024px]"
+                        alt="Register"
+                        className="w-full h-full object-cover"
                     />
                 </div>
             </div>

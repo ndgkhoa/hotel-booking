@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    font-family: 'Inter', sans-serif;
+}
+
 .bg-banner-image {
     background-image: url('https://images.pexels.com/photos/1018478/pexels-photo-1018478.jpeg');
     background-size: cover;

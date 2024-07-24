@@ -11,22 +11,16 @@ import { Link } from 'react-router-dom'
 
 const Footer = () => {
     return (
-        <footer className="bg-footer-image w-full text-gray-700 body-font relative">
+        <footer className="bg-footer-image w-full text-gray-700 relative">
             <div className="footer-overlay"></div>
             <div className="flex flex-col md:flex-row px-5 py-6 md:px-0 md:py-6 md:mx-36 relative z-10">
                 {/* Logo and Social Links */}
                 <div className="flex-shrink-0 w-full md:w-1/4 text-center md:text-left mb-10 md:mb-0 text-white">
                     <Link
                         to="/"
-                        className={`flex items-center text-2xl font-bold`}
+                        className={`inline-flex items-center text-2xl font-bold justify-center sm:mt-0 sm:justify-start`}
                     >
-                        <img
-                            src="https://res.cloudinary.com/dh1ix1eby/image/upload/v1721678034/jhp7oermymm01sd11gro.png"
-                            alt="Logo"
-                            width={90}
-                            height={90}
-                        />
-                        Booking
+                        Hotel Booking
                     </Link>
                     <p className="mt-2 text-sm text-white">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -75,7 +69,7 @@ const Footer = () => {
                 </div>
 
                 {/* Footer Sections */}
-                <div className="w-full md:w-3/4 hidden md:flex flex-col md:flex-row md:ml-10 text-white">
+                <div className="w-full md:w-3/4 hidden md:flex flex-col md:flex-row md:ml-auto text-white">
                     <div className="w-full px-4 lg:w-1/4 md:w-1/2">
                         <h2 className="mb-3 text-sm font-medium tracking-widest text-gray-100 uppercase title-font">
                             About

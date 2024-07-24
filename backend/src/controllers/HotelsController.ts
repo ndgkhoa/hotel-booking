@@ -153,6 +153,7 @@ const HotelsController = {
         }
         res.send(response)
     },
+
     booking: async (req: Request, res: Response) => {
         try {
             const paymentIntentId = req.body.paymentIntentId
@@ -205,7 +206,9 @@ async function uploadImages(imageFiles: Express.Multer.File[]) {
     const uploadPromise = imageFiles.map(async (image) => {
         const b64 = Buffer.from(image.buffer).toString('base64')
         let dataURI = 'data:' + image.mimetype + ';base64,' + b64
-        const res = await cloudinary.v2.uploader.upload(dataURI)
+        const res = await cloudinary.v2.uploader.upload(dataURI, {
+            folder: 'hotels',
+        })
         return res.url
     })
 
