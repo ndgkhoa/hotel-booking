@@ -16,7 +16,7 @@ const Layout = ({ children }: Props) => {
             >
                 <Header />
                 <Hero />
-                <div className="container mx-auto pt-7">
+                <div className="container mx-auto my-6">
                     <SearchBar />
                 </div>
             </div>
