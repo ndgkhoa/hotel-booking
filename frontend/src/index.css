@@ -7,13 +7,13 @@ body {
 }
 
 .bg-banner-image {
-    background-image: url('https://images.pexels.com/photos/1018478/pexels-photo-1018478.jpeg');
+    background-image: url('/banner.jpeg');
     background-size: cover;
     background-position: center;
 }
 
 .bg-footer-image {
-    background-image: url('https://4kwallpapers.com/images/wallpapers/sunset-dusk-lake-reflection-landscape-windows-11-3840x2160-8615.jpeg');
+    background-image: url('/footer.jpeg');
     background-size: cover;
     background-position: center;
     position: relative;

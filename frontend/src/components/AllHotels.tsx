@@ -10,6 +10,8 @@ const AllHotels = () => {
         apiClient.fetchHotels(),
     )
 
+    console.log('hotels', hotels)
+
     const settings = {
         dots: false,
         infinite: true,
